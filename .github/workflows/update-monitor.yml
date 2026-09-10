@@ -45,6 +45,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add site/data/dashboard.json site/reports
+          git add docs/data/dashboard.json docs/reports
           git commit -m "chore: update AI CAD monitor report"
           git push
+

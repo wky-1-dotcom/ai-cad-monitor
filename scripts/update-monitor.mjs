@@ -10,8 +10,8 @@ import process from 'node:process';
 
 const root = path.resolve(import.meta.dirname, '..');
 const configPath = path.join(root, 'config', 'monitors.json');
-const dataPath = path.join(root, 'site', 'data', 'dashboard.json');
-const reportDir = path.join(root, 'site', 'reports');
+const dataPath = path.join(root, 'docs', 'data', 'dashboard.json');
+const reportDir = path.join(root, 'docs', 'reports');
 const today = new Date().toISOString().slice(0, 10);
 const forceRun = process.argv.includes('--force') || process.env.FORCE_RUN === 'true';
 const baselineRun = process.argv.includes('--baseline');
@@ -218,3 +218,4 @@ await fs.mkdir(reportDir, { recursive: true });
 await fs.writeFile(dataPath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 await fs.writeFile(path.join(reportDir, `AI-CAD-追踪报告-${today}.md`), reportMarkdown(payload, today), 'utf8');
 console.log(`已生成 ${today} 的看板数据和报告。`);
+
