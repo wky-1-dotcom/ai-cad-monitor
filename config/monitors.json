@@ -1,0 +1,278 @@
+{
+  "title": "AI 机械 CAD 监控台",
+  "timezone": "Asia/Shanghai",
+  "monitors": [
+    {
+      "id": "markov",
+      "name": "Markov AI / CAD 工作流数据",
+      "shortName": "Markov AI",
+      "category": "训练数据 · GUI Agent",
+      "aliases": [
+        "Markov",
+        "cad-1000-hours",
+        "CAD 1000 Hours",
+        "cad-environments",
+        "CAD Environments",
+        "AutoCAD-Bench"
+      ],
+      "description": "SolidWorks、CATIA、Siemens NX 与 AutoCAD 的真人工作流、交互事件和交付物数据。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无版本更新",
+        "summary": "CAD 1000 Hours 与 CAD Environments 在本期没有新的数据版本。它们仍是最贴近“从人类 CAD 操作轨迹训练/评估 Agent”的公开入口：数据包含录屏、交互事件、任务描述、输入资料、完成文件和 rubric。AutoCAD-Bench 最近默认分支提交早于本期。",
+        "lastVerified": "2026-09-10",
+        "maturity": "研究数据 / benchmark"
+      },
+      "sources": [
+        {
+          "label": "CAD 1000 Hours",
+          "url": "https://huggingface.co/datasets/markov-ai/cad-1000-hours"
+        },
+        {
+          "label": "CAD Environments",
+          "url": "https://huggingface.co/datasets/markov-ai/cad-environments"
+        },
+        {
+          "label": "AutoCAD-Bench",
+          "url": "https://github.com/markov-lab/autocad-bench"
+        }
+      ]
+    },
+    {
+      "id": "videocad",
+      "name": "MIT VideoCAD 团队",
+      "shortName": "VideoCAD",
+      "category": "视频 → 可编辑 CAD",
+      "aliases": [
+        "VideoCAD",
+        "Faez Ahmed",
+        "Brandon Man",
+        "Ghadi Nehme",
+        "Md Ferdous Alam"
+      ],
+      "description": "研究视频、GUI 动作与可编辑 CAD 结果之间的映射。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无版本更新",
+        "summary": "两个公开 VideoCAD 代码入口本期没有默认分支代码、release 或新数据发布。该方向仍值得关注，但现有公开材料不能证明已覆盖 SolidWorks/NX/CATIA 的原生特征树、装配与工程图闭环。",
+        "lastVerified": "2026-09-10",
+        "maturity": "研究原型"
+      },
+      "sources": [
+        {
+          "label": "VideoCAD（Ghadi Nehme）",
+          "url": "https://github.com/ghadinehme/VideoCAD"
+        },
+        {
+          "label": "VideoCAD（UDGOK）",
+          "url": "https://github.com/UDGOK/videocad"
+        },
+        {
+          "label": "VideoCAD 论文",
+          "url": "https://openreview.net/forum?id=7SD9RCvcb9"
+        }
+      ]
+    },
+    {
+      "id": "xarial",
+      "name": "Artem Taturevych / Xarial / CodeStack",
+      "shortName": "xCAD / CodeStack",
+      "category": "SolidWorks API · .NET 执行层",
+      "aliases": [
+        "Xarial",
+        "xCAD",
+        "CodeStack",
+        "Artem Taturevych"
+      ],
+      "description": "SolidWorks API、.NET Add-in、宏与工程图自动化的可靠工具层。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无新代码",
+        "summary": "xCAD 与 CodeStack 本期未发现新的默认分支代码或 release。它们不是 AI Agent，但非常适合将 Agent 的高层意图约束为小粒度、可验证的 SolidWorks COM/.NET 调用，包括草图、特征、装配和工程图操作。",
+        "lastVerified": "2026-09-10",
+        "maturity": "可试用的工程执行层"
+      },
+      "sources": [
+        {
+          "label": "xarial/xcad",
+          "url": "https://github.com/xarial/xcad"
+        },
+        {
+          "label": "CodeStack Drawing API",
+          "url": "https://www.codestack.net/solidworks-api/document/drawing/"
+        },
+        {
+          "label": "CodeStack 草图 Loop 示例",
+          "url": "https://www.codestack.net/solidworks-api/document/sketch/loop-sketch-segments/"
+        }
+      ]
+    },
+    {
+      "id": "haunchen-mcp",
+      "name": "haunchen / SolidWorks MCP",
+      "shortName": "haunchen MCP",
+      "category": "MCP · SolidWorks COM",
+      "aliases": [
+        "haunchen",
+        "haunchen/solidworks-mcp"
+      ],
+      "description": "面向 LLM 的 SolidWorks COM 自动化工具集，覆盖零件、装配与工程图操作。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无正式发布",
+        "summary": "haunchen/solidworks-mcp 本期没有新 release 或代码提交。现有 README 所述工具已经覆盖工程图标准视图、尺寸、气球、BOM、PDF 与特征树/装配读取，适合作为“AI 调 SW 出图”接口设计参考；但请注意其公开测试边界主要是 SolidWorks 2021。",
+        "lastVerified": "2026-09-10",
+        "maturity": "开源原型 / 可试用"
+      },
+      "sources": [
+        {
+          "label": "haunchen/solidworks-mcp",
+          "url": "https://github.com/haunchen/solidworks-mcp"
+        },
+        {
+          "label": "v0.1.0 Release",
+          "url": "https://github.com/haunchen/solidworks-mcp/releases/tag/v0.1.0"
+        }
+      ]
+    },
+    {
+      "id": "adam-mcp",
+      "name": "Adam-Schildkraut / SolidWorks MCP",
+      "shortName": "Adam MCP",
+      "category": "MCP · VBA 生成",
+      "aliases": [
+        "Adam-Schildkraut",
+        "Adam MCP",
+        "Adam-Schildkraut/solidworks-mcp"
+      ],
+      "description": "将自然语言指令转化为 SolidWorks VBA/自动化流程的 MCP 方向。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无版本更新",
+        "summary": "该仓库本期没有新代码或 release。它仍可作为“LLM 生成 VBA 宏 → 在 SolidWorks 中执行”的实现思路参考；在实际导入生产流程前，应补齐 COM 线程、重建失败、配置、装配 mate 与工程图更新的自动化测试。",
+        "lastVerified": "2026-09-10",
+        "maturity": "开源原型"
+      },
+      "sources": [
+        {
+          "label": "Adam-Schildkraut/solidworks-mcp",
+          "url": "https://github.com/Adam-Schildkraut/solidworks-mcp"
+        }
+      ]
+    },
+    {
+      "id": "cad-coder",
+      "name": "Yandong Guan / CAD-Coder",
+      "shortName": "CAD-Coder",
+      "category": "Text-to-CAD · 程序化建模",
+      "aliases": [
+        "CAD-Coder",
+        "CAD Coder",
+        "Yandong Guan",
+        "gudo7208",
+        "anniedoris"
+      ],
+      "description": "文本到程序化 CAD 的模型、数据与评测研究基线。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无版本更新",
+        "summary": "CAD-Coder 相关公开仓库本期未出现模型、代码或数据新版本。它适合用于研究自然语言到 CAD 程序的生成能力，但不能直接等同为已能驱动 SolidWorks/NX 原生特征树或自动产出关联工程图。",
+        "lastVerified": "2026-09-10",
+        "maturity": "研究基线"
+      },
+      "sources": [
+        {
+          "label": "gudo7208/CAD-Coder",
+          "url": "https://github.com/gudo7208/CAD-Coder"
+        },
+        {
+          "label": "anniedoris/CAD-Coder",
+          "url": "https://github.com/anniedoris/CAD-Coder"
+        },
+        {
+          "label": "CAD-Coder 论文",
+          "url": "https://arxiv.org/abs/2502.15533"
+        }
+      ]
+    },
+    {
+      "id": "cadgenbench",
+      "name": "CADGenBench / AI4Engineering",
+      "shortName": "CADGenBench",
+      "category": "CAD Agent Benchmark · Leaderboard",
+      "aliases": [
+        "CADGenBench",
+        "AI4Engineering",
+        "HuggingAI4Engineering",
+        "cadgenbench-submissions"
+      ],
+      "description": "公开 CAD 生成与编辑评测、提交包、leaderboard 与 evaluator。",
+      "fallback": {
+        "state": "updated",
+        "label": "本期有活跃评测更新",
+        "summary": "公开提交数据集在本期持续更新。本次读取 results.jsonl 后，2026-09-06 起共发现 78 条提交状态写入，其中 77 条完成、1 条失败；最新一批在 2026-09-10 08:31（北京时间）提交并在 08:44 记为完成。这说明自动评测流水线仍活跃，但不是任务规范、评分器或 SolidWorks/NX 工程图能力的新版本发布。",
+        "lastVerified": "2026-09-10",
+        "maturity": "可公开评测 / 非生产认证"
+      },
+      "sources": [
+        {
+          "label": "CADGenBench Leaderboard",
+          "url": "https://huggingface.co/spaces/HuggingAI4Engineering/CADGenBench"
+        },
+        {
+          "label": "公开提交结果",
+          "url": "https://huggingface.co/datasets/HuggingAI4Engineering/cadgenbench-submissions"
+        },
+        {
+          "label": "cadgenbench 代码",
+          "url": "https://github.com/huggingface/cadgenbench"
+        }
+      ]
+    },
+    {
+      "id": "autodesk-ai-lab",
+      "name": "Autodesk AI Lab",
+      "shortName": "Autodesk AI Lab",
+      "category": "B-Rep · Neural CAD · 研究",
+      "aliases": [
+        "Autodesk AI Lab",
+        "Autodesk",
+        "Mor Katz",
+        "Karl Willis",
+        "Amir Khasahmadi",
+        "Mike Haley",
+        "Neural CAD"
+      ],
+      "description": "B-Rep、参数化/编辑推理与数据驱动 CAD 研究。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无官方新增",
+        "summary": "本次未检索到本期直接面向机械 CAD Agent、工程图自动化或可编辑参数模型生成的官方新发布。Neural CAD 等工作仍应作为 B-Rep/参数化表示学习路线跟踪，而非误读为现成的 SolidWorks/NX 自动化产品。",
+        "lastVerified": "2026-09-10",
+        "maturity": "研究"
+      },
+      "sources": [
+        {
+          "label": "Autodesk AI Lab",
+          "url": "https://www.research.autodesk.com/research-areas/science/ai-lab/"
+        },
+        {
+          "label": "Neural CAD（Autodesk Research，2026-06-16）",
+          "url": "https://www.research.autodesk.com/blog/neural-cad-how-ai-can-reason-in-design-and-engineering/"
+        },
+        {
+          "label": "CAD-LLM（Autodesk Research）",
+          "url": "https://www.research.autodesk.com/publications/ai-lab-cad-llm/"
+        }
+      ]
+    }
+  ],
+  "ecosystemSignals": [
+    {
+      "date": "2026-09-06",
+      "title": "SolidWorks 2024 运行验证线索（未合并）",
+      "summary": "just1step/solidworks-mcp 的 Issue #44 声称已在真实 SolidWorks 2024 环境验证草图完全定义、倒角/拔模、螺纹与几何后验检查；但没有 PR、代码 diff、release 或维护者合并，当前仅作待验证线索。",
+      "url": "https://github.com/just1step/solidworks-mcp/issues/44"
+    }
+  ]
+}

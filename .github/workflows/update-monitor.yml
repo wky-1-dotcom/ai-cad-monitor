@@ -1,0 +1,50 @@
+name: AI CAD Monitor
+
+on:
+  schedule:
+    # GitHub Actions 使用 UTC；01:30 UTC = 北京时间 09:30。脚本会严格保证相隔至少 3 天才生成新报告。
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+    inputs:
+      force_run:
+        description: '忽略三天间隔，立即更新报告'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-cad-monitor-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Update verified source metadata and Chinese report
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: gpt-5-mini
+          FORCE_RUN: ${{ inputs.force_run || false }}
+        run: node scripts/update-monitor.mjs
+      - name: Commit published data when changed
+        run: |
+          if git diff --quiet; then
+            echo "No report due or no files changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/data/dashboard.json site/reports
+          git commit -m "chore: update AI CAD monitor report"
+          git push

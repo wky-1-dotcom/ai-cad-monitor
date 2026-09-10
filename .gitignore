@@ -1,0 +1,12 @@
+# Existing local-only dashboard, scheduled-task artifacts, and historical working notes.
+/dashboard/
+/automation/
+/AI-CAD-追踪报告-*.md
+/AI_Mechanical_CAD_Watchlist.md
+/AI-机械CAD-对话要点与追踪名单-*.md
+
+# Secrets and local development files.
+.env
+node_modules/
+.DS_Store
+*.log
