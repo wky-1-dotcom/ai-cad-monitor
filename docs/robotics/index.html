@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1120">
+  <title>AI 机器人专家监控台</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body data-track="robotics" data-data-url="../data/dashboard.json">
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">ROBOT LEARNING · VLA · SIMULATION · CONTROL</p>
+        <h1 id="page-title">AI 机器人专家监控台</h1>
+        <p class="subtitle">追踪高活跃机器人 AI 团队、开源项目、仿真平台与真实机器人学习进展。</p>
+        <nav class="track-tabs" aria-label="监控方向"><a href="../">机械 + AI / CAD</a><a class="active" href="./">机器人 + AI</a></nav>
+      </div>
+      <div class="report-meta" id="report-meta" aria-live="polite"></div>
+    </header>
+    <section class="summary-row" aria-label="汇总状态"><div class="metric-card"><span class="metric-label">正式监控对象</span><strong id="monitor-count">—</strong><small>GitHub / 官方项目 / 实验室</small></div><div class="metric-card good"><span class="metric-label">本期有效更新</span><strong id="update-count">—</strong><small>代码、模型、数据或官方发布</small></div><div class="metric-card watch"><span class="metric-label">待验证线索</span><strong id="signal-count">—</strong><small>未合并 Issue / 社区实测</small></div></section>
+    <section class="workspace" aria-label="AI 机器人监控内容"><aside class="monitor-panel"><div class="panel-heading"><div><p class="eyebrow">MONITORING MATERIALS</p><h2>监控资料</h2></div><button id="show-all" class="text-button">全部</button></div><div id="monitor-list" class="monitor-list" role="list"></div><div class="signal-box" id="signal-box"></div></aside><section class="detail-panel" aria-live="polite"><div id="detail-content"></div></section></section>
+  </main>
+  <script src="../app.js"></script>
+</body>
+</html>

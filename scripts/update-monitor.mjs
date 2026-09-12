@@ -25,6 +25,18 @@ const githubTargets = {
   'adam-mcp': ['Adam-Schildkraut/solidworks-mcp'],
   'cad-coder': ['gudo7208/CAD-Coder', 'anniedoris/CAD-Coder'],
   cadgenbench: ['huggingface/cadgenbench'],
+  agentcad: ['n3r/AgentCAD'],
+  'agent-cad-drawing': ['Jane-o-O-o-O/Agent-CAD'],
+  'solidworks-mcp-new': ['hjbaard/SolidWorks-MCP'],
+  'tau-cad': ['taucad/tau'],
+  lerobot: ['huggingface/lerobot'],
+  isaaclab: ['isaac-sim/IsaacLab'],
+  openpi: ['Physical-Intelligence/openpi'],
+  maniskill: ['haosulab/ManiSkill'],
+  mujoco: ['google-deepmind/mujoco'],
+  'mujoco-menagerie': ['google-deepmind/mujoco_menagerie'],
+  robosuite: ['ARISE-Initiative/robosuite'],
+  drake: ['RobotLocomotion/drake'],
 };
 const hfTargets = {
   markov: [
@@ -61,7 +73,7 @@ async function readJson(file, fallback = null) {
 }
 async function fetchJson(url) {
   const response = await fetch(url, {
-    headers: { Accept: 'application/vnd.github+json, application/json', 'User-Agent': 'ai-cad-monitor-github-actions' },
+    headers: { Accept: 'application/vnd.github+json, application/json', 'User-Agent': 'ai-cad-monitor-github-actions', ...(process.env.GITHUB_TOKEN ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {}) },
   });
   if (!response.ok) throw new Error(`${response.status} ${url}`);
   return response.json();
@@ -150,24 +162,28 @@ function standardSummary(state, factLines, fallback) {
   const failed = factLines.filter(x => x.includes('读取失败'));
   const successful = factLines.filter(x => !x.includes('读取失败'));
   if (state === 'updated') return `检测到公开可验证来源发生变化。${successful.join('；')}。该判定只代表代码、数据、评测或官方材料的公开变化；仍需在目标 CAD 版本中验证原生文件、重建、草图约束、B-Rep 与工程图输出。`;
+  if (failed.length && !successful.length) return `${fallback.summary} 本次公开核验暂受 GitHub API 频率限制影响，下一次工作流会使用 GITHUB_TOKEN 自动重试。`;
   if (failed.length) return `本期未将该对象判定为正式更新。已核验：${successful.join('；') || '当前没有可用元数据'}。另有 ${failed.length} 个来源读取失败，不能据此断言“无更新”，将在下一次工作流中自动重试。`;
   return `${fallback.summary} 本次公开核验：${successful.join('；')}。`;
 }
 function reportMarkdown(data, date) {
   const updated = data.monitors.filter(x => x.state === 'updated');
-  const noChange = data.monitors.filter(x => x.state !== 'updated');
+  const groups = [
+    ['mechanical_ai', data.trackTitles?.mechanical_ai || '机械 + AI / CAD'],
+    ['robotics', data.trackTitles?.robotics || '机器人 + AI'],
+  ];
   const lines = [
-    `# AI 机械 CAD 追踪报告｜${date}`,
+    `# AI 机械 CAD 与机器人 AI 追踪报告｜${date}`,
     '',
     '## Abstract',
     '',
-    `本期对 ${data.monitors.length} 个 AI + 机械 CAD 公开对象进行了可验证元数据核验。正式更新 ${updated.length} 个；其余对象没有发现可被归类为 release、默认分支代码、数据集、benchmark 规则或官方研究发布的实质变化。Issue、论坛和个人演示仅作为待验证线索，不作为正式能力结论。`,
-    '',
-    '## 看板更新清单',
+    `本期对 ${data.monitors.length} 个公开对象进行了可验证元数据核验，其中机械 + AI / CAD 与机器人 + AI 分轨展示。正式更新 ${updated.length} 个；其余对象没有发现可被归类为 release、默认分支代码、数据集、benchmark 规则或官方研究发布的实质变化。Issue、论坛和个人演示仅作为待验证线索，不作为正式能力结论。`,
     '',
   ];
-  for (const item of data.monitors) {
-    lines.push(`### ${item.id}`, `- 状态: ${item.state}`, `- 摘要: ${item.summary}`, `- 核验日期: ${date}`, '');
+  for (const [track, title] of groups) {
+    const items = data.monitors.filter(x => (x.track || 'mechanical_ai') === track);
+    lines.push(`## ${title}`, '', `本轨共 ${items.length} 个监控对象，正式更新 ${items.filter(x => x.state === 'updated').length} 个。`, '');
+    for (const item of items) lines.push(`### ${item.name}`, `- 状态: ${item.state}`, `- 摘要: ${item.summary}`, `- 核验日期: ${date}`, '');
   }
   lines.push('## 原始资料链接', '');
   for (const item of data.monitors) {
@@ -175,7 +191,7 @@ function reportMarkdown(data, date) {
     for (const source of item.sources) lines.push(`- [${source.label}](${source.url})`);
     lines.push('');
   }
-  lines.push('## 判定说明', '', '- `updated`：仅限新的正式 release、默认分支代码、数据集、benchmark 规则/数据或官方研究发布。', '- `watch_signal`：Issue、论坛帖、个人实测或未合并 PR，不能等同于产品能力。', '- 机械 CAD 落地必须额外验证原生文件、特征树重建、草图约束、B-Rep、工程图/BOM/GD&T 和 PDF/DXF/STEP 输出。', '');
+  lines.push('## 判定说明', '', '- updated：仅限新的正式 release、默认分支代码、数据集、benchmark 规则/数据或官方研究发布。', '- watch_signal：Issue、论坛帖、个人实测或未合并 PR，不能等同于产品能力。', '- 机械 CAD 落地必须额外验证原生文件、特征树重建、草图约束、B-Rep、工程图/BOM/GD&T 和 PDF/DXF/STEP 输出。', '- 机器人落地必须额外验证真实硬件、标定、延迟、碰撞安全、权限隔离和 sim-to-real 差异。', '');
   return lines.join('\n');
 }
 
@@ -201,14 +217,14 @@ for (const monitor of config.monitors) {
   const factLines = describeFacts(facts);
   const ai = await deepSummary(monitor, state, factLines, monitor.fallback);
   monitors.push({
-    id: monitor.id, name: monitor.name, shortName: monitor.shortName, category: monitor.category,
+    id: monitor.id, track: monitor.track || 'mechanical_ai', name: monitor.name, shortName: monitor.shortName, category: monitor.category,
     description: monitor.description, sources: monitor.sources, state, label: labelFor(state),
     summary: ai?.summary || standardSummary(state, factLines, monitor.fallback),
     maturity: ai?.maturity || monitor.fallback.maturity, lastVerified: today, fingerprint, facts,
   });
 }
 const payload = {
-  title: config.title, timezone: config.timezone, generatedAt: new Date().toISOString(), lastRunDate: today,
+  title: config.title, timezone: config.timezone, trackTitles: config.trackTitles || {}, generatedAt: new Date().toISOString(), lastRunDate: today,
   monitors,
   ecosystemSignals: [{ date: '2026-09-10', title: 'just1step/solidworks-mcp Issue #44：SolidWorks 2024 草图/特征校验社区线索（未合并）', url: 'https://github.com/just1step/solidworks-mcp/issues/44' }],
   latestReport: { date: today, url: `./reports/AI-CAD-追踪报告-${today}.md` },
@@ -218,4 +234,3 @@ await fs.mkdir(reportDir, { recursive: true });
 await fs.writeFile(dataPath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 await fs.writeFile(path.join(reportDir, `AI-CAD-追踪报告-${today}.md`), reportMarkdown(payload, today), 'utf8');
 console.log(`已生成 ${today} 的看板数据和报告。`);
-

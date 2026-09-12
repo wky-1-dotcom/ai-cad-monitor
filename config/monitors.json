@@ -1,5 +1,5 @@
 {
-  "title": "AI 机械 CAD 监控台",
+  "title": "AI 机械 CAD 与机器人监控台",
   "timezone": "Asia/Shanghai",
   "monitors": [
     {
@@ -36,7 +36,8 @@
           "label": "AutoCAD-Bench",
           "url": "https://github.com/markov-lab/autocad-bench"
         }
-      ]
+      ],
+      "track": "mechanical_ai"
     },
     {
       "id": "videocad",
@@ -71,7 +72,8 @@
           "label": "VideoCAD 论文",
           "url": "https://openreview.net/forum?id=7SD9RCvcb9"
         }
-      ]
+      ],
+      "track": "mechanical_ai"
     },
     {
       "id": "xarial",
@@ -105,7 +107,8 @@
           "label": "CodeStack 草图 Loop 示例",
           "url": "https://www.codestack.net/solidworks-api/document/sketch/loop-sketch-segments/"
         }
-      ]
+      ],
+      "track": "mechanical_ai"
     },
     {
       "id": "haunchen-mcp",
@@ -133,7 +136,8 @@
           "label": "v0.1.0 Release",
           "url": "https://github.com/haunchen/solidworks-mcp/releases/tag/v0.1.0"
         }
-      ]
+      ],
+      "track": "mechanical_ai"
     },
     {
       "id": "adam-mcp",
@@ -158,7 +162,8 @@
           "label": "Adam-Schildkraut/solidworks-mcp",
           "url": "https://github.com/Adam-Schildkraut/solidworks-mcp"
         }
-      ]
+      ],
+      "track": "mechanical_ai"
     },
     {
       "id": "cad-coder",
@@ -193,7 +198,8 @@
           "label": "CAD-Coder 论文",
           "url": "https://arxiv.org/abs/2502.15533"
         }
-      ]
+      ],
+      "track": "mechanical_ai"
     },
     {
       "id": "cadgenbench",
@@ -227,7 +233,8 @@
           "label": "cadgenbench 代码",
           "url": "https://github.com/huggingface/cadgenbench"
         }
-      ]
+      ],
+      "track": "mechanical_ai"
     },
     {
       "id": "autodesk-ai-lab",
@@ -264,6 +271,361 @@
           "label": "CAD-LLM（Autodesk Research）",
           "url": "https://www.research.autodesk.com/publications/ai-lab-cad-llm/"
         }
+      ],
+      "track": "mechanical_ai"
+    },
+    {
+      "id": "agentcad",
+      "track": "mechanical_ai",
+      "name": "AgentCAD / n3r",
+      "shortName": "AgentCAD",
+      "category": "Agentic CAD · B-Rep · MCP",
+      "aliases": [
+        "AgentCAD",
+        "n3r",
+        "agentic CAD",
+        "build123d"
+      ],
+      "description": "以代码、真实 B-Rep 几何校验和 MCP 为核心的 agent-first 参数化 CAD，强调建模—测量—验证—纠错闭环。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无版本更新",
+        "summary": "AgentCAD 是值得持续观察的 agent-first 参数化 CAD 项目：把参数化零件、装配、B-Rep 有效性、体积/质量/干涉检查和 MCP 接口放进同一工作流。它不是 SolidWorks 原生插件，仍需验证 Windows、商用 CAD 互操作和工程图输出边界。",
+        "lastVerified": "2026-09-12",
+        "maturity": "开源研究/工程原型"
+      },
+      "sources": [
+        {
+          "label": "AgentCAD GitHub",
+          "url": "https://github.com/n3r/AgentCAD"
+        },
+        {
+          "label": "AgentCAD 几何 CI",
+          "url": "https://github.com/n3r/AgentCAD/tree/main/docs"
+        }
+      ]
+    },
+    {
+      "id": "agent-cad-drawing",
+      "track": "mechanical_ai",
+      "name": "Agent-CAD / 工程图智能体",
+      "shortName": "Agent-CAD Drawing",
+      "category": "工程图 · DXF · Agent",
+      "aliases": [
+        "Agent-CAD",
+        "Jane-o-O-o-O",
+        "DXF",
+        "工程图自动化"
+      ],
+      "description": "将自然语言、PDF/文档和工程要求转换为结构化二维工程图，并对 DXF 进行确定性校验。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无版本更新",
+        "summary": "Agent-CAD 目前聚焦可编辑的二维工程图与 DXF 交付，覆盖要求抽取、几何操作、尺寸/中心线/图层和结果校验。它补足了三维 CAD 监控中“出工程图”的观察面，但项目明确不等同于已完成的 SolidWorks/NX 原生三维、装配或标准认证能力。",
+        "lastVerified": "2026-09-12",
+        "maturity": "开源工程原型"
+      },
+      "sources": [
+        {
+          "label": "Agent-CAD GitHub",
+          "url": "https://github.com/Jane-o-O-o-O/Agent-CAD"
+        },
+        {
+          "label": "Technical Design",
+          "url": "https://github.com/Jane-o-O-o-O/Agent-CAD/blob/main/TECHNICAL_DESIGN.md"
+        }
+      ]
+    },
+    {
+      "id": "solidworks-mcp-new",
+      "track": "mechanical_ai",
+      "name": "SolidWorks-MCP / hjbaard",
+      "shortName": "hjbaard SW-MCP",
+      "category": "SolidWorks · COM · Agent",
+      "aliases": [
+        "hjbaard",
+        "SolidWorks-MCP",
+        "SOLIDWORKS 2026"
+      ],
+      "description": "直接驱动本地 SolidWorks 的 MCP 服务器，覆盖参数化建模、测量、导出和闭环验证。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无版本更新",
+        "summary": "hjbaard/SolidWorks-MCP 是与用户目标最直接相关的新公开入口：AI 通过 COM 驱动本机 SolidWorks，执行参数化零件操作、测量和导出，并尝试 build → measure → verify → correct 闭环。当前应重点验证版本兼容、工程图/BOM、装配 mate 和失败恢复。",
+        "lastVerified": "2026-09-12",
+        "maturity": "开源原型 / 需版本实测"
+      },
+      "sources": [
+        {
+          "label": "SolidWorks-MCP GitHub",
+          "url": "https://github.com/hjbaard/SolidWorks-MCP"
+        }
+      ]
+    },
+    {
+      "id": "tau-cad",
+      "track": "mechanical_ai",
+      "name": "Zoo / Tau · AI-native CAD",
+      "shortName": "Tau CAD",
+      "category": "AI-native CAD · 参数化",
+      "aliases": [
+        "Tau",
+        "Zoo",
+        "taucad",
+        "AI-native CAD"
+      ],
+      "description": "浏览器端、开源、kernel-agnostic 的 AI-native CAD 路线，强调参数化代码与可迭代建模。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无版本更新",
+        "summary": "Tau 代表另一条 AI-native CAD 产品路线：让参数化建模代码成为可读、可版本化、可被 Agent 迭代的设计表示。它与 SolidWorks/NX 原生特征树并不等价，需继续跟踪 B-Rep、装配、工程图和制造交付能力。",
+        "lastVerified": "2026-09-12",
+        "maturity": "开源平台原型"
+      },
+      "sources": [
+        {
+          "label": "Tau CAD GitHub",
+          "url": "https://github.com/taucad/tau"
+        }
+      ]
+    },
+    {
+      "id": "lerobot",
+      "track": "robotics",
+      "name": "Hugging Face LeRobot 团队",
+      "shortName": "LeRobot",
+      "category": "机器人学习 · VLA · 数据集",
+      "aliases": [
+        "LeRobot",
+        "Hugging Face Robotics",
+        "ACT",
+        "Diffusion Policy",
+        "SmolVLA"
+      ],
+      "description": "面向真实机器人学习的开源工具、数据集与预训练策略，覆盖模仿学习、VLA、遥操作和多种硬件适配。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无实质更新",
+        "summary": "LeRobot 是目前机器人学习开源生态中最值得持续跟踪的入口之一：代码、数据集、模型和硬件适配都集中在公开仓库，适合观察 AI 从视觉/语言指令走向真实机械臂执行的进展。落地时仍需核验具体机器人、相机、标定和安全边界。",
+        "lastVerified": "2026-09-12",
+        "maturity": "高活跃开源平台 / 真实机器人学习"
+      },
+      "sources": [
+        {
+          "label": "LeRobot GitHub",
+          "url": "https://github.com/huggingface/lerobot"
+        },
+        {
+          "label": "Hugging Face Robotics",
+          "url": "https://huggingface.co/robotics"
+        }
+      ]
+    },
+    {
+      "id": "isaaclab",
+      "track": "robotics",
+      "name": "NVIDIA Isaac Lab 团队",
+      "shortName": "Isaac Lab",
+      "category": "机器人仿真 · 强化学习 · Sim2Real",
+      "aliases": [
+        "Isaac Lab",
+        "Isaac Sim",
+        "NVIDIA Robotics"
+      ],
+      "description": "基于 GPU 仿真的机器人学习框架，重点覆盖强化学习、模仿学习、操作、移动与 sim-to-real。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无实质更新",
+        "summary": "Isaac Lab 是工业级机器人仿真与学习的重要公开入口，适合跟踪任务环境、训练接口、传感器、操作策略和 sim-to-real 工具链变化。它依赖 NVIDIA/Isaac 运行环境，部署成本和版本兼容性需要单独评估。",
+        "lastVerified": "2026-09-12",
+        "maturity": "高活跃工程平台 / GPU 仿真"
+      },
+      "sources": [
+        {
+          "label": "Isaac Lab GitHub",
+          "url": "https://github.com/isaac-sim/IsaacLab"
+        },
+        {
+          "label": "NVIDIA Isaac Lab 文档",
+          "url": "https://isaac-sim.github.io/IsaacLab/"
+        }
+      ]
+    },
+    {
+      "id": "openpi",
+      "track": "robotics",
+      "name": "Physical Intelligence / OpenPI",
+      "shortName": "OpenPI",
+      "category": "机器人基础模型 · VLA",
+      "aliases": [
+        "Physical Intelligence",
+        "OpenPI",
+        "π0",
+        "VLA"
+      ],
+      "description": "公开机器人基础模型与训练代码，关注视觉—语言—动作策略在真实机器人上的泛化。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无实质更新",
+        "summary": "OpenPI 是观察机器人基础模型、VLA 策略和真实硬件部署的关键公开仓库。重点关注模型权重、训练数据、推理接口、延迟和可复现实验；公开代码不等于对任意机械臂即插即用。",
+        "lastVerified": "2026-09-12",
+        "maturity": "高关注研究工程 / VLA 原型"
+      },
+      "sources": [
+        {
+          "label": "OpenPI GitHub",
+          "url": "https://github.com/Physical-Intelligence/openpi"
+        },
+        {
+          "label": "Physical Intelligence",
+          "url": "https://www.physicalintelligence.company/"
+        }
+      ]
+    },
+    {
+      "id": "maniskill",
+      "track": "robotics",
+      "name": "ManiSkill / Haosulab",
+      "shortName": "ManiSkill",
+      "category": "机器人操作 · GPU 仿真 · Benchmark",
+      "aliases": [
+        "ManiSkill",
+        "Haosulab",
+        "robot manipulation benchmark"
+      ],
+      "description": "面向机器人操作任务的 GPU 加速仿真与 benchmark，提供多任务环境、数据和训练基线。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无实质更新",
+        "summary": "ManiSkill 适合跟踪机器人操作 benchmark、GPU 仿真环境、数据生成和策略评测。它可以作为机械臂抓取、装配和接触丰富任务的实验底座，但与真实产线节拍、治具和安全 PLC 仍有明显距离。",
+        "lastVerified": "2026-09-12",
+        "maturity": "高活跃研究平台 / 操作 benchmark"
+      },
+      "sources": [
+        {
+          "label": "ManiSkill GitHub",
+          "url": "https://github.com/haosulab/ManiSkill"
+        },
+        {
+          "label": "ManiSkill 官网",
+          "url": "https://maniskill.readthedocs.io/"
+        }
+      ]
+    },
+    {
+      "id": "mujoco",
+      "track": "robotics",
+      "name": "Google DeepMind MuJoCo 团队",
+      "shortName": "MuJoCo",
+      "category": "物理仿真 · 控制 · 机器人基础设施",
+      "aliases": [
+        "MuJoCo",
+        "DeepMind",
+        "physics engine"
+      ],
+      "description": "开源物理仿真引擎与机器人控制基础设施，被大量强化学习、操作和动力学研究使用。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无实质更新",
+        "summary": "MuJoCo 是机器人 AI 研究的基础设施型项目，适合监控物理引擎、MJX/JAX 加速、模型格式和控制接口变化。它本身不是 VLA 产品，但很多机器人策略和 benchmark 都依赖它。",
+        "lastVerified": "2026-09-12",
+        "maturity": "高活跃基础设施 / 物理仿真"
+      },
+      "sources": [
+        {
+          "label": "MuJoCo GitHub",
+          "url": "https://github.com/google-deepmind/mujoco"
+        },
+        {
+          "label": "MuJoCo 文档",
+          "url": "https://mujoco.readthedocs.io/"
+        }
+      ]
+    },
+    {
+      "id": "mujoco-menagerie",
+      "track": "robotics",
+      "name": "MuJoCo Menagerie / DeepMind",
+      "shortName": "MuJoCo Menagerie",
+      "category": "机器人模型 · 仿真资产",
+      "aliases": [
+        "MuJoCo Menagerie",
+        "robot models",
+        "DeepMind Robotics"
+      ],
+      "description": "高质量机器人模型与仿真资产集合，覆盖机械臂、四足、人形和移动机器人。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无实质更新",
+        "summary": "MuJoCo Menagerie 的价值在于把大量真实机器人模型、关节参数和执行器配置放入可复现实验环境，适合观察新机器人资产和控制示例。使用时要核对模型许可、动力学参数和现实硬件差异。",
+        "lastVerified": "2026-09-12",
+        "maturity": "活跃开源资产库 / 仿真模型"
+      },
+      "sources": [
+        {
+          "label": "MuJoCo Menagerie GitHub",
+          "url": "https://github.com/google-deepmind/mujoco_menagerie"
+        }
+      ]
+    },
+    {
+      "id": "robosuite",
+      "track": "robotics",
+      "name": "ARISE Initiative / robosuite",
+      "shortName": "robosuite",
+      "category": "机器人操作 · 模仿学习 · 强化学习",
+      "aliases": [
+        "robosuite",
+        "ARISE Initiative",
+        "robot manipulation"
+      ],
+      "description": "面向机器人操作研究的仿真框架与 benchmark，支持模仿学习、强化学习和多种机械臂。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无实质更新",
+        "summary": "robosuite 是机器人操作研究中成熟度较高的仿真入口，适合跟踪任务、控制器、数据采集和策略基线。它与 LeRobot、MuJoCo、真实机械臂数据管线可以形成互补。",
+        "lastVerified": "2026-09-12",
+        "maturity": "活跃研究框架 / 操作 benchmark"
+      },
+      "sources": [
+        {
+          "label": "robosuite GitHub",
+          "url": "https://github.com/ARISE-Initiative/robosuite"
+        },
+        {
+          "label": "robosuite 文档",
+          "url": "https://robosuite.ai/"
+        }
+      ]
+    },
+    {
+      "id": "drake",
+      "track": "robotics",
+      "name": "Russ Tedrake / MIT RobotLocomotion",
+      "shortName": "Drake · Tedrake",
+      "category": "机器人动力学 · 规划 · 控制",
+      "aliases": [
+        "Russ Tedrake",
+        "MIT Robot Locomotion",
+        "Drake"
+      ],
+      "description": "面向机器人动力学、轨迹优化、规划、控制与操作的高影响力研究团队和开源工具链。",
+      "fallback": {
+        "state": "no_material_update",
+        "label": "本期无实质更新",
+        "summary": "Drake 是机器人动力学、规划和控制方向的高质量基础设施，适合跟踪可验证的模型、优化器、系统仿真和 manipulation 研究。它不是生成式 AI 项目，但可作为 AI 策略的约束、规划和验证层。",
+        "lastVerified": "2026-09-12",
+        "maturity": "高影响力研究平台 / 动力学与控制"
+      },
+      "sources": [
+        {
+          "label": "Drake GitHub",
+          "url": "https://github.com/RobotLocomotion/drake"
+        },
+        {
+          "label": "MIT RobotLocomotion",
+          "url": "https://robotlocomotion.csail.mit.edu/"
+        }
       ]
     }
   ],
@@ -274,5 +636,9 @@
       "summary": "just1step/solidworks-mcp 的 Issue #44 声称已在真实 SolidWorks 2024 环境验证草图完全定义、倒角/拔模、螺纹与几何后验检查；但没有 PR、代码 diff、release 或维护者合并，当前仅作待验证线索。",
       "url": "https://github.com/just1step/solidworks-mcp/issues/44"
     }
-  ]
+  ],
+  "trackTitles": {
+    "mechanical_ai": "AI 机械 CAD 监控台",
+    "robotics": "AI 机器人专家监控台"
+  }
 }

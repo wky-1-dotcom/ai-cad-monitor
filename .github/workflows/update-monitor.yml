@@ -39,6 +39,7 @@ jobs:
       - name: Update verified source metadata and Chinese report
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
           OPENAI_MODEL: gpt-5-mini
           FORCE_RUN: ${{ inputs.force_run || false }}
         run: node scripts/update-monitor.mjs
